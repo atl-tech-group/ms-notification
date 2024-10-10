@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: ms-notification
+  data:
+    mongodb:
+      uri: mongodb://rootuser:rootpass@localhost:27017/notificationdb?ssl=false&authSource=admin&authMechanism=SCRAM-SHA-1
+      authentication-database: admin
+      database: notificationdb
+      username: rootuser
+      password: rootpass
+      host: localhost
+      port: 27017
+
+kafka:
+  host: localhost:9092
+  topics:
+    user-created:
+      topic: ms-auth.user_created.1
+      consumerGroup: ${spring.application.name}-user-created-consumer
+      replicationFactor: 1
+      retentionInMs: 604800000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 9095

@@ -10,6 +10,17 @@ spring:
       password: rootpass
       host: localhost
       port: 27017
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "****@gmail.com"
+    password: "**** **** **** ****"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 kafka:
   host: localhost:9092
@@ -18,7 +29,7 @@ kafka:
       topic: ms-auth.user_created.1
       consumerGroup: ${spring.application.name}-user-created-consumer
       replicationFactor: 1
-      retentionInMs: 604800000
+      retentionInMs: 604800000  # Kafka retention policy for 7 days
 
 eureka:
   client:

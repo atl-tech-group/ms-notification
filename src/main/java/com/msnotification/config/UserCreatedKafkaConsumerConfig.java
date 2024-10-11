@@ -27,6 +27,11 @@ public class UserCreatedKafkaConsumerConfig<T> {
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         //config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
 
+        /*
+         latest --> qaldigi offset-den oxumaga baslar
+         earliest --> ilk offset-den oxumaga bashlar
+         */
+        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         return new DefaultKafkaConsumerFactory<>(config);
     }
 

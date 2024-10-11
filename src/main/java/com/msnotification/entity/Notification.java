@@ -9,6 +9,8 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDate;
+
 @Document(collation = "notifications")
 @Getter
 @Setter
@@ -21,6 +23,9 @@ public class Notification extends BaseEntity {
     @Field("user_id")
     private Long userId;
     private String email;
+
+    @Field("date_of_birth")
+    private LocalDate dateOfBirth;
     @Field("is_send")
     private Boolean isSend;
 

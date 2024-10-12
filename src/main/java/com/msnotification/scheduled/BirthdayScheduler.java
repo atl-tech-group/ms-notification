@@ -21,12 +21,12 @@ public class BirthdayScheduler {
     private final NotificationRepository notificationRepository;
     private final EmailService emailService;
 
-    @Scheduled(cron = "0 1 0 * * ?")  // At 00:01 AM every day
+    @Scheduled(cron = "0 1 0 * * ?")
     public void checkAndSendBirthdayEmails() {
-        System.out.println("50 sec");
         LocalDate today = LocalDate.now();
-        System.out.println("LocalDate.now()" + LocalDate.now());
-        List<Notification> usersWithBirthdayToday = notificationRepository.findByDateOfBirth(today);
+        String datePattern = String.format("%02d-%02d", today.getMonthValue(), today.getDayOfMonth());
+
+        List<Notification> usersWithBirthdayToday = notificationRepository.findUsersWithBirthday(datePattern);
 
         if (usersWithBirthdayToday.isEmpty()) {
             log.info("No birthdays found for today: {}", today);
